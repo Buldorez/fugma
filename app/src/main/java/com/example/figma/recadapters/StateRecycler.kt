@@ -8,9 +8,11 @@ import android.widget.ImageView
 import android.widget.TextView
 
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.example.figma.DataBase.quotes
 import com.example.figma.R
 
-class StateRecycler(val context: Context, val list: ArrayList<state>): RecyclerView.Adapter<StateRecycler.MyVH>() {
+class StateRecycler(val context: Context, val quotes: quotes): RecyclerView.Adapter<StateRecycler.MyVH>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StateRecycler.MyVH {
         val root = LayoutInflater.from(context).inflate(R.layout.state_adapter, parent, false)
         return MyVH(root)
@@ -22,13 +24,13 @@ class StateRecycler(val context: Context, val list: ArrayList<state>): RecyclerV
     }
 
     override fun onBindViewHolder(holder: StateRecycler.MyVH, position: Int) {
-        holder.image.setImageResource(list[position].state_image)
-        holder.title.setText(list[position].state_title)
-        holder.state_text.setText(list[position].state_text)
+        Glide.with(context).load(quotes.data[position].image).into(holder.image)
+        holder.title.setText(quotes.data[position].title)
+        holder.state_text.setText(quotes.data[position].description)
     }
 
     override fun getItemCount(): Int {
-        return list.size
+        return quotes.data.size
     }
 
 }
