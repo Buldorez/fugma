@@ -9,7 +9,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Figma">
+        android:theme="@style/Theme.Figma"
+        android:usesCleartextTraffic="true">
         <activity
             android:name=".MenuActivity"
             android:exported="true"

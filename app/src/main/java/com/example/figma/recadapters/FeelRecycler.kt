@@ -7,28 +7,30 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.example.figma.DataBase.feelings
 import com.example.figma.R
 
-class FeelRecycler (val context: Context, val list: ArrayList<feel>) : RecyclerView.Adapter<FeelRecycler.MyWH>(){
+class FeelRecycler (val context: Context, val feelings: feelings) : RecyclerView.Adapter<FeelRecycler.MyWH>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FeelRecycler.MyWH {
         val root = LayoutInflater.from(context).inflate(R.layout.feel_adapter,parent,false)
         return MyWH(root)
 
     }
-    class MyWH(itemView: View): RecyclerView.ViewHolder(itemView){
+    class MyWH(ListOfView: View): RecyclerView.ViewHolder(ListOfView){
         val image: ImageView = itemView.findViewById(R.id.img_feel)
         val textView: TextView = itemView.findViewById(R.id.text_feel)
 
     }
 
     override fun onBindViewHolder(holder: FeelRecycler.MyWH, position: Int) {
-        holder.image.setImageResource(list[position].image)
-        holder.textView.setText(list[position].name_feel)
+        Glide.with(context).load(feelings.data[position].image).into(holder.image)
+        holder.textView.text = feelings.data[position].title
 
     }
 
     override fun getItemCount(): Int {
-        return list.size
+        return feelings.data.size
 
     }
 }
